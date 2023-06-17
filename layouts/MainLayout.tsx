@@ -81,8 +81,8 @@ export default function MainLayout({
       >
         <Header
           style={{
+            paddingLeft: 14,
             height: 'auto',
-            paddingLeft: marginLeft - 184,
             background: colorBgContainer,
           }}
         >
@@ -90,16 +90,16 @@ export default function MainLayout({
             <Col
               xs={24}
               sm={24}
-              md={6}
-              lg={6}
-              xl={6}
+              md={10}
+              lg={10}
+              xl={10}
               style={{
                 fontWeight: 'bold',
                 color: 'darkblue',
                 fontSize: 20,
               }}
             >
-              COMPANY NAME
+              PRAKASA MAKMUR KENCANA
             </Col>
             <Col xs={24} sm={24} md={7} lg={7} xl={7}>
               <Row>
