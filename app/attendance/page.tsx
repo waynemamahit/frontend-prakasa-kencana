@@ -216,7 +216,7 @@ export default function Attendance() {
   return (
     <BasePageLayout
       title="Welcome back, John"
-      subtitle="You're Working at ABC Company"
+      subtitle="You're Working at Prakasa Makmur Kencana"
       more={
         <Col {...colProps} lg={2} xl={2}>
           <Button icon={<UploadOutlined />}>Export</Button>
@@ -226,7 +226,9 @@ export default function Attendance() {
       <Row justify={'space-around'} gutter={[8, 8]}>
         {attendanceStats.map((item: LowUpStatisticProps) => (
           <Col key={item.title} {...colProps} lg={8} xl={8}>
-            <LowUpStatistic {...item} />
+            <Card style={{ padding: '0' }}>
+              <LowUpStatistic {...item} />
+            </Card>
           </Col>
         ))}
         <Col {...colProps} lg={24} xl={24}>
@@ -244,6 +246,7 @@ export default function Attendance() {
               </Col>
               <Col {...colProps} lg={24} xl={24}>
                 <Table
+                  bordered
                   columns={columns}
                   dataSource={data}
                   expandable={expandeable}

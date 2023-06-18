@@ -1,7 +1,5 @@
-import { Card, Statistic, Typography } from 'antd';
+import { Statistic } from 'antd';
 import React from 'react';
-
-const { Title } = Typography;
 
 export interface LowUpStatisticProps {
   title: string;
@@ -13,6 +11,7 @@ export interface LowUpStatisticProps {
   prefix?: React.ReactNode;
   suffix?: string;
 }
+
 export default function LowUpStatistic({
   title,
   value,
@@ -24,9 +23,11 @@ export default function LowUpStatistic({
   suffix,
 }: LowUpStatisticProps) {
   return (
-    <Card style={{ padding: '0' }}>
-      <Title level={5}>{title}</Title>
-      <Title level={2}>{value.toLocaleString('en')}</Title>
+    <>
+      <h5 style={{ fontSize: 14, margin: '6px 0' }}>{title}</h5>
+      <h3 style={{ fontSize: 30, margin: '10px 0' }}>
+        {value.toLocaleString('en')}
+      </h3>
       <Statistic
         title={growTitle}
         value={growValue}
@@ -35,6 +36,6 @@ export default function LowUpStatistic({
         prefix={prefix}
         suffix={suffix}
       />
-    </Card>
+    </>
   );
 }

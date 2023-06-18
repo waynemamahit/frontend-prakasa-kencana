@@ -11,7 +11,8 @@ export default function useSchedule() {
   }
   
   return {
-    // TODO: Remove this dummy after refactor replace with data
+    data,
+    // TODO: Remove this dummy after add logic and state
     dataSource: data.map((dataItem: ScheduleEmployee, index: number) => ({
       ...dataItem,
       monday: index === 0 ? '7am-3pm' : '+',

@@ -13,7 +13,7 @@ export default function PieChart({
   rootLabel: string;
   theme: any;
   data: unknown[];
-  height: string | number;
+  height: number;
 }) {
   useEffect(() => {
     // Create Root
@@ -24,18 +24,18 @@ export default function PieChart({
     const chart = root.container.children.push(
       am5percent.PieChart.new(root, {
         layout: root.verticalLayout,
-        innerRadius: 100,
+        innerRadius: height / 2 - height / 3.25,
       })
     );
     // Add label
     const chartLabel = root.tooltipContainer.children.push(
       am5.Label.new(root, {
         x: am5.p50,
-        y: am5.percent(42),
+        y: height / 1.3,
         centerX: am5.p50,
         centerY: am5.p50,
         fill: am5.color(0x000000),
-        fontSize: 24,
+        fontSize: 20,
       })
     );
     chartLabel.set('text', label);
@@ -44,7 +44,7 @@ export default function PieChart({
       am5percent.PieSeries.new(root, {
         valueField: 'value',
         categoryField: 'category',
-        scale: 0.65,
+        scale: 0.8,
       })
     );
     // Set data

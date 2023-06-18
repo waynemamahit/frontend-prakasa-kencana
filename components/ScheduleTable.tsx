@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Table } from 'antd';
+import { Avatar, Card, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export default function ScheduleTable({
@@ -14,7 +14,7 @@ export default function ScheduleTable({
       title: 'Employees',
       dataIndex: 'name',
       fixed: 'left',
-      width: 150,
+      width: 200,
       render: (value: any) => (
         <>
           <Avatar icon={<UserOutlined />} style={{ marginRight: 10 }} />
@@ -27,6 +27,7 @@ export default function ScheduleTable({
 
   return (
     <Table
+      bordered
       dataSource={dataSource}
       columns={columns}
       pagination={{ pageSize: 10 }}
