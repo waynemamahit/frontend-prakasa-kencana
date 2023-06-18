@@ -96,7 +96,7 @@ export const HeaderRender = ({
 };
 
 const getListEvent = (value: Dayjs) => {
-  let listData;
+  let listData: any[] = [];
   switch (value.date()) {
     case 8:
       listData = [
@@ -128,7 +128,7 @@ const getListEvent = (value: Dayjs) => {
       break;
     default:
   }
-  return listData || [];
+  return listData;
 };
 
 export default function MonthlySchedule() {

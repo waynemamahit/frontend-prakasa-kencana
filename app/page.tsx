@@ -1,15 +1,144 @@
 'use client';
-import LowUpStatistic from '@/components/LowUpStatistic';
-import PieChart from '@/components/PieChart';
+import DonutChart from '@/components/DonutChart';
+import GrowStatistic, { GrowStatisticProps } from '@/components/GrowStatistic';
+import ReportCard from '@/components/ReportCard';
 import BasePageLayout, { colProps } from '@/layouts/BasePageLayout';
+import { EmployeeLeave } from '@/models/Employee';
+import { baseFormatDate } from '@/utils/date';
 import statusChartTheme from '@amcharts/amcharts5/themes/Dataviz';
 import genderChartTheme from '@amcharts/amcharts5/themes/Kelly';
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Card, Col, Row, Typography } from 'antd';
+import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Avatar,
+  Badge,
+  Card,
+  Col,
+  DatePicker,
+  Row,
+  Table,
+  Typography,
+} from 'antd';
+import { ColumnsType } from 'antd/es/table';
+import dayjs from 'dayjs';
+import ReportNumberStatistic, {
+  ReportNumberStatisticData,
+} from '../components/ReportNumberStatistic';
 
 const { Title } = Typography;
 
+const formatDate = 'ddd, ' + baseFormatDate;
+
 export default function Home() {
+  const cardTitleStyle = { color: '#454545' };
+  const growReport: GrowStatisticProps = {
+    value: 2420,
+    growValue: 440,
+    growTitle: 'vs yesterday',
+  };
+
+  const attedanceNumStat: ReportNumberStatisticData[] = [
+    {
+      label: 'All Users Statistics',
+      value: '25,256 Users',
+    },
+    {
+      label: 'Average Visit Time',
+      value: '2 Hours 35 Minutes',
+    },
+  ];
+
+  const dataDays = [
+    {
+      country: 'Mon',
+      value: 1000,
+    },
+    {
+      country: 'Tue',
+      value: 2000,
+    },
+    {
+      country: 'Wed',
+      value: 1500,
+    },
+    {
+      country: 'Thu',
+      value: 500,
+    },
+    {
+      country: 'Fri',
+      value: 2500,
+    },
+    {
+      country: 'Sat',
+      value: 2000,
+    },
+    {
+      country: 'Sunday',
+      value: 2500,
+    },
+  ];
+
+  const columns: ColumnsType<EmployeeLeave> = [
+    {
+      title: 'Employee Name',
+      dataIndex: 'name',
+      render: (value: any) => (
+        <>
+          <Avatar icon={<UserOutlined />} style={{ marginRight: 10 }} />
+          {value}
+        </>
+      ),
+    },
+    {
+      title: 'Type of Leave',
+      dataIndex: 'type',
+      render: (value: number) => {
+        const typesLeave = [
+          {
+            color: 'purple',
+            label: 'Medical leave',
+          },
+        ];
+        const typeRow = typesLeave[value];
+        return (
+          <Badge size="default" color={typeRow.color} text={typeRow.label} />
+        );
+      },
+    },
+    {
+      title: 'Total Days',
+      dataIndex: 'totalDay',
+      render: (value: any) => value + ' Days',
+    },
+  ];
+
+  const employees: EmployeeLeave[] = [
+    {
+      name: 'Olivia Rhye',
+    },
+    {
+      name: 'Tony',
+    },
+    {
+      name: 'Jony',
+    },
+    {
+      name: 'Budi',
+    },
+    {
+      name: 'Yudi',
+    },
+  ].map((leaveItem, index) => ({
+    ...leaveItem,
+    key: index,
+    type: 0,
+    totalDay: 20,
+  }));
+
   return (
     <BasePageLayout
       title="Welcome, John"
@@ -18,17 +147,19 @@ export default function Home() {
       <Row gutter={[8, 8]}>
         <Col span={24}>
           <Card>
-            <Title level={3}>Company Overview</Title>
+            <Title style={cardTitleStyle} level={3}>
+              Company Overview
+            </Title>
             <Row justify={'space-around'} gutter={[16, 16]}>
               <Col {...colProps} lg={6} xl={6}>
                 <Row gutter={[8, 8]}>
                   <Col span={24}>
                     <Card>
-                      <LowUpStatistic
+                      <GrowStatistic
                         title={'Total Employee'}
                         value={2420}
                         growTitle={'vs yesterday'}
-                        growValue={225}
+                        growValue={425}
                         growValueStyle={{ color: '#3f8600' }}
                         prefix={<ArrowUpOutlined />}
                       />
@@ -36,7 +167,7 @@ export default function Home() {
                   </Col>
                   <Col span={24}>
                     <Card>
-                      <LowUpStatistic
+                      <GrowStatistic
                         title={'Total Deparment'}
                         value={100}
                         growTitle={'vs yesterday'}
@@ -54,7 +185,7 @@ export default function Home() {
                   <Row justify={'space-around'} gutter={[16, 16]}>
                     <Col {...colProps} lg={24} xl={12}>
                       <Card>
-                        <PieChart
+                        <DonutChart
                           rootLabel="gender"
                           label="Gender"
                           data={[
@@ -74,7 +205,7 @@ export default function Home() {
                     </Col>
                     <Col {...colProps} lg={24} xl={12}>
                       <Card>
-                        <PieChart
+                        <DonutChart
                           rootLabel="status"
                           label="Status"
                           data={[
@@ -97,6 +228,47 @@ export default function Home() {
               </Col>
             </Row>
           </Card>
+        </Col>
+        <Col span={24}>
+          <ReportCard
+            title="Attendance"
+            rootChartColumn="attendance"
+            dataColumn={dataDays}
+            {...growReport}
+          >
+            <Row gutter={[16, 16]}>
+              <Col span={24}>
+                <ReportNumberStatistic data={attedanceNumStat} />
+              </Col>
+              <Col span={24}></Col>
+            </Row>
+          </ReportCard>
+        </Col>
+        <Col span={24}>
+          <ReportCard
+            title="Leave"
+            rootChartColumn="leave"
+            dataColumn={dataDays}
+            {...growReport}
+          >
+            <Row justify={'center'} gutter={[16, 16]}>
+              <Col span={8}>
+                <DatePicker
+                  format={formatDate}
+                  value={dayjs('Tue, 16 Aug 2021', formatDate)}
+                />
+              </Col>
+              <Col span={24}>
+                <Table
+                  bordered
+                  columns={columns}
+                  dataSource={employees}
+                  pagination={{ pageSize: 5 }}
+                  scroll={{ y: 240 }}
+                />
+              </Col>
+            </Row>
+          </ReportCard>
         </Col>
       </Row>
     </BasePageLayout>

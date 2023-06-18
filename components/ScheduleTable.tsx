@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Table } from 'antd';
+import { Avatar, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export default function ScheduleTable({

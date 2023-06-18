@@ -1,7 +1,5 @@
 'use client';
-import LowUpStatistic, {
-  LowUpStatisticProps,
-} from '@/components/LowUpStatistic';
+import GrowStatistic, { GrowStatisticProps } from '@/components/GrowStatistic';
 import BasePageLayout, { colProps } from '@/layouts/BasePageLayout';
 import { AttendanceEmployee } from '@/models/AttendanceEmployee';
 import { baseFormatDate } from '@/utils/date';
@@ -35,7 +33,7 @@ const expandeable: ExpandableConfig<AttendanceEmployee> | undefined = {
 
 const formatDate = 'ddd, ' + baseFormatDate;
 
-const attendanceStats: LowUpStatisticProps[] = [
+const attendanceStats: GrowStatisticProps[] = [
   {
     title: 'Present Employees',
     value: 2420,
@@ -68,6 +66,7 @@ const renderLocationColumn = (field: string) => {
       <Button
         color="primary"
         target="__blank"
+        type="link"
         icon={<EnvironmentFilled />}
         href={row[field]}
       >
@@ -224,10 +223,10 @@ export default function Attendance() {
       }
     >
       <Row justify={'space-around'} gutter={[8, 8]}>
-        {attendanceStats.map((item: LowUpStatisticProps) => (
+        {attendanceStats.map((item: GrowStatisticProps) => (
           <Col key={item.title} {...colProps} lg={8} xl={8}>
             <Card style={{ padding: '0' }}>
-              <LowUpStatistic {...item} />
+              <GrowStatistic {...item} />
             </Card>
           </Col>
         ))}

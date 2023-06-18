@@ -1,8 +1,8 @@
 import { Statistic } from 'antd';
 import React from 'react';
 
-export interface LowUpStatisticProps {
-  title: string;
+export interface GrowStatisticProps {
+  title?: string;
   value: number;
   growTitle?: string;
   growValue: number;
@@ -12,7 +12,7 @@ export interface LowUpStatisticProps {
   suffix?: string;
 }
 
-export default function LowUpStatistic({
+export default function GrowStatistic({
   title,
   value,
   growTitle,
@@ -21,7 +21,7 @@ export default function LowUpStatistic({
   growValueStyle,
   prefix,
   suffix,
-}: LowUpStatisticProps) {
+}: GrowStatisticProps) {
   return (
     <>
       <h5 style={{ fontSize: 14, margin: '6px 0' }}>{title}</h5>

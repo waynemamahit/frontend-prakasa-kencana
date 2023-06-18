@@ -9,10 +9,14 @@ export const metadata: Metadata = {
   description: 'Exercise frontend on prakasa makmur kencana',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <MainLayout>{children}</MainLayout>
       </body>
     </html>

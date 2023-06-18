@@ -1,20 +1,15 @@
+import { BaseChart } from '@/models/Chart';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from '@amcharts/amcharts5/percent';
 import { useEffect } from 'react';
 
-export default function PieChart({
+export default function DonutChart({
   label,
   rootLabel,
   height,
   theme,
   data,
-}: {
-  label: string;
-  rootLabel: string;
-  theme: any;
-  data: unknown[];
-  height: number;
-}) {
+}: BaseChart) {
   useEffect(() => {
     // Create Root
     const root = am5.Root.new(rootLabel);

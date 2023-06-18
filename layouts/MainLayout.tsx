@@ -7,7 +7,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Button, Col, Input, Layout, Menu, Row, theme } from 'antd';
+import { Button, Col, Input, Layout, Menu, Row, Space, theme } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 import { createElement, useMemo, useState } from 'react';
 
@@ -90,9 +90,9 @@ export default function MainLayout({
             <Col
               xs={24}
               sm={24}
-              md={10}
-              lg={10}
-              xl={10}
+              md={16}
+              lg={16}
+              xl={16}
               style={{
                 fontWeight: 'bold',
                 color: 'darkblue',
@@ -101,15 +101,11 @@ export default function MainLayout({
             >
               PRAKASA MAKMUR KENCANA
             </Col>
-            <Col xs={24} sm={24} md={7} lg={7} xl={7}>
-              <Row>
-                <Col span={4}>
-                  <Button size="middle" icon={<BellOutlined />} />
-                </Col>
-                <Col span={20} style={{ padding: 0 }}>
-                  <Input prefix={<SearchOutlined />} />
-                </Col>
-              </Row>
+            <Col xs={24} sm={24} md={4} lg={4} xl={4}>
+              <Space align="end">
+                <Button size="middle" icon={<BellOutlined />} />
+                <Input prefix={<SearchOutlined />} />
+              </Space>
             </Col>
           </Row>
         </Header>
