@@ -1,13 +1,17 @@
 import { colProps } from '@/layouts/BasePageLayout';
 import columnTheme from '@amcharts/amcharts5/themes/Frozen';
+import stackedTheme from '@amcharts/amcharts5/themes/Dataviz';
 import { ArrowUpOutlined } from '@ant-design/icons';
 import { Card, Col, Row } from 'antd';
 import ColumnChart from './ColumnChart';
 import GrowStatistic, { GrowStatisticProps } from './GrowStatistic';
+import StackedBarChart from './StackedBarChart';
 
 export type ReportStatisticProps = {
   rootChartColumn: string;
-  dataColumn: unknown[];
+  dataColumnChart: any[];
+  rootStackedBar: string;
+  dataStackedChart: any[];
 } & GrowStatisticProps;
 
 export default function ReportStatistic({
@@ -17,7 +21,9 @@ export default function ReportStatistic({
   growValueStyle = { color: '#3f8600' },
   prefix = <ArrowUpOutlined />,
   rootChartColumn,
-  dataColumn,
+  dataColumnChart,
+  rootStackedBar,
+  dataStackedChart,
 }: ReportStatisticProps) {
   return (
     <Row align={'middle'} gutter={[8, 8]}>
@@ -34,12 +40,19 @@ export default function ReportStatistic({
         <ColumnChart
           rootLabel={rootChartColumn}
           theme={columnTheme}
-          data={dataColumn}
+          data={dataColumnChart}
           height={240}
         />
       </Col>
       <Col span={24}>
-        <Card></Card>
+        <Card>
+          <StackedBarChart
+            rootLabel={rootStackedBar}
+            data={dataStackedChart}
+            theme={stackedTheme}
+            height={140}
+          />
+        </Card>
       </Col>
     </Row>
   );

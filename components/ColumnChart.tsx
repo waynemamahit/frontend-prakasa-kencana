@@ -36,7 +36,6 @@ export default function ColumnChart({
       paddingRight: 15,
     });
     xRenderer.grid.template.set('visible', false);
-
     const xAxis = chart.xAxes.push(
       am5xy.CategoryAxis.new(root, {
         maxDeviation: 0.3,
@@ -91,8 +90,9 @@ export default function ColumnChart({
     xAxis.data.setAll(data);
     series.data.setAll(data);
     // Make stuff animate on load
-    series.appear(1000).catch((err) => console.error(err));
-    chart.appear(1000, 100).catch((err) => console.error(err));
+    const catchFunc = (err: any) => console.error(err);
+    series.appear(1000).catch(catchFunc);
+    chart.appear(1000, 100).catch(catchFunc);
   });
 
   return <div id={rootLabel} style={{ width: '100%', height }}></div>;

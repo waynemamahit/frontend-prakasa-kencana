@@ -2,6 +2,7 @@
 import DonutChart from '@/components/DonutChart';
 import GrowStatistic, { GrowStatisticProps } from '@/components/GrowStatistic';
 import ReportCard from '@/components/ReportCard';
+import StackedBarChart from '@/components/StackedBarChart';
 import BasePageLayout, { colProps } from '@/layouts/BasePageLayout';
 import { EmployeeLeave } from '@/models/Employee';
 import { baseFormatDate } from '@/utils/date';
@@ -79,6 +80,36 @@ export default function Home() {
     {
       country: 'Sunday',
       value: 2500,
+    },
+  ];
+
+  const topAttendanceType = [
+    {
+      category: 'Top attendance type',
+      present: 2100,
+      late: 250,
+      absent: 100,
+    },
+  ];
+
+  const topLeaveType = [
+    {
+      category: 'Top leave type taken',
+      annual: 2100,
+      medical: 250,
+      other: 100,
+    },
+  ];
+
+  const topVisitedArea = [
+    {
+      category: 'Top Visited Area',
+      kebayoran: 2.5,
+      kelurahan: 2.5,
+      margahayu: 2.1,
+      sawangan: 1,
+      cakung: 0.8,
+      others: 0.4,
     },
   ];
 
@@ -232,23 +263,32 @@ export default function Home() {
         <Col span={24}>
           <ReportCard
             title="Attendance"
-            rootChartColumn="attendance"
-            dataColumn={dataDays}
+            rootChart="attendance"
+            dataColumnChart={dataDays}
+            dataStackedChart={topAttendanceType}
             {...growReport}
           >
             <Row gutter={[16, 16]}>
               <Col span={24}>
                 <ReportNumberStatistic data={attedanceNumStat} />
               </Col>
-              <Col span={24}></Col>
+              <Col span={24}>
+                <StackedBarChart
+                  rootLabel="topvisitedarea"
+                  theme={genderChartTheme}
+                  height={175}
+                  data={topVisitedArea}
+                />
+              </Col>
             </Row>
           </ReportCard>
         </Col>
         <Col span={24}>
           <ReportCard
             title="Leave"
-            rootChartColumn="leave"
-            dataColumn={dataDays}
+            rootChart="leave"
+            dataColumnChart={dataDays}
+            dataStackedChart={topLeaveType}
             {...growReport}
           >
             <Row justify={'center'} gutter={[16, 16]}>
