@@ -55,6 +55,8 @@ export default function DonutChart({
     );
     legend.data.setAll(series.dataItems);
     series.appear(1000, 100).catch((err) => alert(err));
+
+    return () => root.dispose();
   });
   return <div id={rootLabel} style={{ width: '100%', height }}></div>;
 }

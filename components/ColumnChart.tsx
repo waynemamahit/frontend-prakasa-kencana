@@ -93,6 +93,8 @@ export default function ColumnChart({
     const catchFunc = (err: any) => console.error(err);
     series.appear(1000).catch(catchFunc);
     chart.appear(1000, 100).catch(catchFunc);
+
+    return () => root.dispose();
   });
 
   return <div id={rootLabel} style={{ width: '100%', height }}></div>;

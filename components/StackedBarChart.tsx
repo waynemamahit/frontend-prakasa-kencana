@@ -100,6 +100,8 @@ export default function StackedBarChart({
       if (key === 'category') continue;
       makeSeries(key.toUpperCase(), key);
     }
+
+    return () => root.dispose();
   });
 
   return <div id={rootLabel} style={{ width: '100%', height }}></div>;
