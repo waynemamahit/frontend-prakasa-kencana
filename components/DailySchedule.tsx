@@ -10,7 +10,8 @@ const loopCountHours = (
   lastProcess: (hours: number, ampm: string, hourCount: Date) => void
 ) => {
   let hourCount = new Date('Jan 01 1997 06:00:00');
-  while (true) {
+  const infCond = true;
+  while (infCond) {
     let hours = hourCount.getHours();
     const ampm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12;
