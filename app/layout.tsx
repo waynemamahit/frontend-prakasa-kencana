@@ -1,4 +1,5 @@
 import MainLayout from '@/layouts/MainLayout';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <MainLayout>{children}</MainLayout>
+        <AntdRegistry>
+          <MainLayout>{children}</MainLayout>
+        </AntdRegistry>
       </body>
     </html>
   );
